@@ -68,3 +68,24 @@
 - make a sub package under main package in src/main/java/com.in28minutes.rest.webservices.resfulwebservices.helloworld
 - Create a controller java class HelloWorldController
 - The path to access: http://localhost:8080/hello-world
+
+# Returning JSON
+- return type of custom class (HelloWorldBean)
+- HelloWorldBean: attribute: message, constructor, toString, getter, setter
+- **DispatcherServlet**
+  - All request using MVC Spring Framework goes through DispatcherServlet, this is called Front Controller Pattern
+  - DispatcherServlet is the first thing the request goes to, because URI is mapped to the root url ('/')
+  - DispatcherServlet maps the request to corresponding controller based on the URI
+    - /hello-world => helloworld()
+  - DispatcherServet is configured by "AutoConfigaration"
+- How does response converted into JSON
+  - @ResponseBody
+    - The HelloWorldController has annotation @RestController which has annotation @ResponseBody, means this Bean should return as ease
+    - When the return is ease the message conversion happens using JacsonHttpMessageConverter
+    - JacsonHttpMessageConverter is also AutoConfigared by SpringBoot
+
+# Error
+- ErrorMvcAutoConfiguration is responsible for generation errors if the URL is incorrect
+
+# Enable debug logging
+- add "logging.level.org.springframework=debug" in src/main/resources/application.properties

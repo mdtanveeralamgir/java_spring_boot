@@ -1,8 +1,6 @@
 package com.in28minutes.rest.webservices.resfulwebservices.user;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,9 +22,18 @@ public class UserResource {
         return this.service.findAll();
     }
 
+    //Get a single user
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id)
     {
         return this.service.findOne(id);
     }
+
+    //Create a new user
+    @PostMapping("/users")
+    public User createUser(@RequestBody User user) //The content of a user is sent as a part of the request body hence @RequestBody annotation
+    {
+       return this.service.saveUser(user);
+    }
+
 }

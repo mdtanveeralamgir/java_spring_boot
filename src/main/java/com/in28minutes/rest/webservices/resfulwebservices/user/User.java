@@ -9,7 +9,7 @@ public class User {
     private LocalDate birthDate;
 
 
-    private User(int id, String name, LocalDate birthDate)
+    public User(int id, String name, LocalDate birthDate)
     {
         this.id = id;
         this.name = name;

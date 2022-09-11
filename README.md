@@ -84,6 +84,12 @@
     - When the return is ease the message conversion happens using JacsonHttpMessageConverter
     - JacsonHttpMessageConverter is also AutoConfigared by SpringBoot
 
+# Path Parameters
+- Any URL includes variables is called path parameter
+- pass the parameter using @PathVariable annotation
+
+
+
 # Error
 - ErrorMvcAutoConfiguration is responsible for generation errors if the URL is incorrect
 

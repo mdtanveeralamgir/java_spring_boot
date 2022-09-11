@@ -62,3 +62,9 @@
     - DevTools: Live reload
 
 
+..............................................................................................................................
+
+# Hello World
+- make a sub package under main package in src/main/java/com.in28minutes.rest.webservices.resfulwebservices.helloworld
+- Create a controller java class HelloWorldController
+- The path to access: http://localhost:8080/hello-world

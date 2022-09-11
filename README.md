@@ -94,4 +94,4 @@
 - ErrorMvcAutoConfiguration is responsible for generation errors if the URL is incorrect
 
 # Enable debug logging
-- add "logging.level.org.springframework=debug" in src/main/resources/application.properties 
+- add "logging.level.org.springframework=debug" in src/main/resources/application.properties

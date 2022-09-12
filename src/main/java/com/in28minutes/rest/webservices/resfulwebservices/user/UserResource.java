@@ -29,7 +29,12 @@ public class UserResource {
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable int id)
     {
-        return this.service.findOne(id);
+        User user =  this.service.findOne(id);
+
+        if(user == null)
+            throw new UserNotFoundExceltion("id:"+id);
+
+        return user;
     }
 
     //Create a new user

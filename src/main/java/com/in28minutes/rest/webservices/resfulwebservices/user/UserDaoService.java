@@ -42,7 +42,8 @@ public class UserDaoService {
 //
 //        return result;
         Predicate<? super User> predicate = user -> user.getId() == id;
-        return users.stream().filter(predicate).findFirst().get();
+        // return users.stream().filter(predicate).findFirst().get(); //Throws exception if the user is not found
+        return users.stream().filter(predicate).findFirst().orElse(null); //Null returns if user is not found
     }
 
     public User saveUser(User user)

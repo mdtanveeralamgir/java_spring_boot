@@ -4,6 +4,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import jakarta.validation.Valid;
+
 import java.net.URI;
 import java.util.List;
 
@@ -39,7 +41,7 @@ public class UserResource {
 
     //Create a new user
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) //The content of a user is sent as a part of the request body hence @RequestBody annotation
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) //The content of a user is sent as a part of the request body hence @RequestBody annotation
     {
        User savedUser = this.service.saveUser(user);
 

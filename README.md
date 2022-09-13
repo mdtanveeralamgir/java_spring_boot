@@ -95,3 +95,10 @@
 
 # Enable debug logging
 - add "logging.level.org.springframework=debug" in src/main/resources/application.properties
+
+# Internationalization (I18n)
+- Create a file with name "messages.properties" in the save folder where "application.properties" resides
+- For each message and each langualge create a new file
+	- for dutch: messages_nl.properties
+- To get the dutch version of the message send the request with header
+	- accept-language: nl

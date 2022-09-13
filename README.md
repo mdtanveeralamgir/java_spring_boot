@@ -95,3 +95,17 @@
 
 # Enable debug logging
 - add "logging.level.org.springframework=debug" in src/main/resources/application.properties
+
+# Content Negotiation
+- Get the response in different format XML/JSON
+- Get the response in different language (EN/FR) etc
+- To make the request need to add "Key: Accept, Value: application/xml" in the header
+
+# Internationalization (I18n)
+- In the hello world project
+
+
+
+
+
+

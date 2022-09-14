@@ -1,10 +1,10 @@
-package com.in28minutes.rest.webservices.resfulwebservices;
+package com.mdtanveeralamgir.springboot.jpaandhibernet;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ResfulWebServicesApplicationTests {
+class JpaAndHibernetApplicationTests {
 
 	@Test
 	void contextLoads() {

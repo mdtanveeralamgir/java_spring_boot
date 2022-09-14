@@ -1,5 +1,7 @@
 package com.in28minutes.rest.webservices.resfulwebservices.user;
 
+import org.springframework.hateoas.EntityModel;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -8,6 +10,9 @@ import jakarta.validation.Valid;
 
 import java.net.URI;
 import java.util.List;
+
+//Importing all methods of WebMvcLinkBuilder manually to use the methodOn method
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
 @RestController //making it a rest controller
 public class UserResource {
@@ -27,16 +32,32 @@ public class UserResource {
         return this.service.findAll();
     }
 
+    /*
+     * Adding link to all users
+     * Link to add: http://localhost:8080/users
+     * 2 concepts to add link to the date:
+     * EntityModel: Allows to add the link in the User bean (class user) without changing the User bean
+     * WebMvcLinkBuilder
+     */
     //Get a single user
     @GetMapping("/users/{id}")
-    public User retrieveUser(@PathVariable int id)
+    public EntityModel<User> retrieveUser(@PathVariable int id)
     {
         User user =  this.service.findOne(id);
 
         if(user == null)
             throw new UserNotFoundExceltion("id:"+id);
 
-        return user;
+        //Creating an entitymodel of user
+        EntityModel<User> entityModel = EntityModel.of(user);
+        
+        //Needs to import the methodOn manually
+        //Adding the link using WebMvcLinkBuilder
+        //Linking to this class's controller method and calling retrieveAllUsers method
+        WebMvcLinkBuilder link = linkTo(methodOn(this.getClass()).retrieveAllUsers());
+        entityModel.add(link.withRel("all-users")); //Adding the link to entityModel and giving it a name
+        
+        return entityModel;
     }
 
     //Create a new user

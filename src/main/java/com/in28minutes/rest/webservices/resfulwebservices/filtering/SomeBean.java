@@ -1,17 +1,19 @@
 package com.in28minutes.rest.webservices.resfulwebservices.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 //Omitting a field on class level
 //Pass an array of fields if needs to omit more than one field: @JsonIgnoreProperties({"field_1", "field_2"})
-@JsonIgnoreProperties("field_1")
+//@JsonIgnoreProperties("field_1")
+@JsonFilter("SomeBeanFilter") //Filtering applied on "FilteringController"
 public class SomeBean {
 
 	private String field_1;
 	
-	@JsonIgnore //Omitting field_2 from response
+//	@JsonIgnore //Omitting field_2 from response
 	private String field_2;
 	
 	private String field_3;

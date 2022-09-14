@@ -33,6 +33,12 @@
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		
+		<!-- Installing HAL explorer, Using HAL to make playing with links -->
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-rest-hal-explorer</artifactId>
+		</dependency>
+		
 		<!-- Installing HATEOS, adding link in the response to other beans -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

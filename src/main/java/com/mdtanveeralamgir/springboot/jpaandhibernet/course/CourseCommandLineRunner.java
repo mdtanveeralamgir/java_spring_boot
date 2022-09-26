@@ -1,16 +1,17 @@
-package com.mdtanveeralamgir.springboot.jpaandhibernet.course.jdbc;
+package com.mdtanveeralamgir.springboot.jpaandhibernet.course;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.mdtanveeralamgir.springboot.jpaandhibernet.course.Course;
+
+import com.mdtanveeralamgir.springboot.jpaandhibernet.course.jpa.CourseJpaRepository;
 
 @Component //Spring can find it in component scan
-public class CourseJdbcCommandLineRunner implements CommandLineRunner{ //the interface makes this class running at startup
+public class CourseCommandLineRunner implements CommandLineRunner{ //the interface makes this class running at startup
 
 	@Autowired
-	private CourseJdbcRepository repository;
+	private CourseJpaRepository repository;
 	
 	@Override
 	public void run(String... args) throws Exception {

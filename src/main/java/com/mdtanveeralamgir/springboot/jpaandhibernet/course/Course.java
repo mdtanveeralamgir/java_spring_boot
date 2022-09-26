@@ -1,10 +1,22 @@
 package com.mdtanveeralamgir.springboot.jpaandhibernet.course;
 
-import javax.print.event.PrintJobAttributeEvent;
 
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+
+@Entity //Making this bean an entity to link with the table "Course" in db
 public class Course {
+	
+	@Id //Primary key
 	private long id;
+	
+	@Column(name="name") //Not necessary if the column name is same as property name
 	private String name;
+	
+	@Column(name="author")
 	private String author;
 	
 	public Course()

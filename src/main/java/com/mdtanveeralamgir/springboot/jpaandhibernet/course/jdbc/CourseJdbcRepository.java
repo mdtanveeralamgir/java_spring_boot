@@ -9,6 +9,8 @@ import org.springframework.stereotype.Repository;
 
 import com.mdtanveeralamgir.springboot.jpaandhibernet.course.Course;
 
+import jakarta.persistence.PersistenceContext;
+
 @Repository //Makding this class a repo to talk to db
 public class CourseJdbcRepository {
 	

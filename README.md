@@ -95,3 +95,7 @@
 
 # Enable debug logging
 - add "logging.level.org.springframework=debug" in src/main/resources/application.properties
+
+# Optional
+- Deals with null pointer exception
+- Whenever there is a chance the return value is null the option value type should be used

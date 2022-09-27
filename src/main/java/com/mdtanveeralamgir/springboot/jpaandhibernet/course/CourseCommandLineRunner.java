@@ -23,7 +23,10 @@ public class CourseCommandLineRunner implements CommandLineRunner{ //the interfa
 		this.repository.save(new Course(3, "Opel", "mta"));
 		this.repository.deleteById(1l);
 		System.out.println(this.repository.findById(3l));
-		
+		System.out.println(this.repository.findAll());
+		System.out.println(this.repository.count());
+		System.out.println(this.repository.findByAuthor("mta"));
+
 	} 
 
 	

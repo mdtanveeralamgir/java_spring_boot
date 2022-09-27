@@ -9,7 +9,7 @@ public class FP01Functional {
     {
 
 //        printAllNumbersInListFunctional(numbers);
-        printAllEvenNumbersInListFunctional(numbers);
+        printSquareOfEvenNumbers(numbers);
     }
 
     //Traditional approach
@@ -25,6 +25,15 @@ public class FP01Functional {
                 .stream()
                 // .filter(FP01Functional::isEven) // Using a defined method
                 .filter(number -> number % 2 == 0) //Lambda expression
+                .forEach(System.out::println); //println is a static method inside System.out
+    }
+    private static void printSquareOfEvenNumbers(List<Integer> numbers) {
+        //Adding a filter to print only even numbers
+        numbers
+                .stream()
+                // .filter(FP01Functional::isEven) // Using a defined method
+                .filter(number -> number % 2 == 0) //Lambda expression
+                .map(number -> Math.pow(number, 2))//Mapping, square the even numbers
                 .forEach(System.out::println); //println is a static method inside System.out
     }
 

@@ -21,11 +21,12 @@ public class CourseCommandLineRunner implements CommandLineRunner{ //the interfa
 		this.repository.save(new Course(1, "Aayid", "mta"));
 		this.repository.save(new Course(2, "Shamma", "mta"));
 		this.repository.save(new Course(3, "Opel", "mta"));
+		this.repository.save(new Course(4, "Ope", "mta"));
 		this.repository.deleteById(1l);
-		System.out.println(this.repository.findById(3l));
-		System.out.println(this.repository.findAll());
-		System.out.println(this.repository.count());
-		System.out.println(this.repository.findByAuthor("mta"));
+//		System.out.println(this.repository.findById(3l));
+		this.repository.findAll().stream().filter(course -> course.getName().length() >= 3 ).forEach(System.out::println);
+//		System.out.println(this.repository.count());
+//		System.out.println(this.repository.findByAuthor("mta"));
 
 	} 
 

@@ -24,9 +24,9 @@ public class User {
     private LocalDate birthDate;
 
 
-    public User(int id, String name, LocalDate birthDate)
+    public User(int Id, String name, LocalDate birthDate)
     {
-        this.id = id;
+        this.id = Id;
         this.name = name;
         this.birthDate = birthDate;
 

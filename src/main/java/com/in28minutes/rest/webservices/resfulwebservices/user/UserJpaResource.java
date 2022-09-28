@@ -17,14 +17,11 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RestController //making it a rest controller
 public class UserJpaResource {
-
-    private UserDaoService service; //Since UserDaoService is a component of sprint so we can autowire it.
     private UserRepository repository;
 
     //Constructor injection
-    public UserJpaResource(UserDaoService service, UserRepository repository)
+    public UserJpaResource(UserRepository repository)
     {
-        this.service = service;
         this.repository = repository;
     }
 

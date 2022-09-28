@@ -2,13 +2,17 @@ package com.in28minutes.rest.webservices.resfulwebservices.user;
 
 import java.time.LocalDate;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+@Entity(name = "user_details") //User is a keywork in h2, so table name needs to be different than class name user
 public class User {
-
+    @Id
+    @GeneratedValue //Auto generated
     private int id;
     
     @Size(min=2, message = "Name should have at least 2 characters.") //"Jakarta" validation min length 3

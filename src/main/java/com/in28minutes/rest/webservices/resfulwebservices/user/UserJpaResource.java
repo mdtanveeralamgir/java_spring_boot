@@ -10,6 +10,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
@@ -45,13 +46,13 @@ public class UserJpaResource {
     @GetMapping("/jpa/users/{id}")
     public EntityModel<User> retrieveUser(@PathVariable int id)
     {
-        User user =  this.service.findOne(id);
+        Optional<User> user =  this.repository.findById(id);
 
-        if(user == null)
+        if(user.isEmpty())
             throw new UserNotFoundExceltion("id:"+id);
 
         //Creating an entitymodel of user
-        EntityModel<User> entityModel = EntityModel.of(user);
+        EntityModel<User> entityModel = EntityModel.of(user.get());
         
         //Needs to import the methodOn manually
         //Adding the link using WebMvcLinkBuilder
@@ -79,10 +80,10 @@ public class UserJpaResource {
     }
 
     //Delete a user
-    @DeleteMapping("jpa/users/{id}")
+    @DeleteMapping("/jpa/users/{id}")
     public void deleteUser(@PathVariable int id)
     {
-        this.service.deleteById(id);
+        this.repository.deleteById(id);
     }
 
 }

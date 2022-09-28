@@ -11,6 +11,8 @@ import jakarta.validation.constraints.Size;
 import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity(name = "user_details") //User is a keywork in h2, so table name needs to be different than class name user
 public class User {
+
+    protected User(){}
     @Id
     @GeneratedValue //Auto generated
     private int id;

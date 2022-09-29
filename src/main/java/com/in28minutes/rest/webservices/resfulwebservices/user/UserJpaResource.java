@@ -100,7 +100,7 @@ public class UserJpaResource {
 
     //create post for a user
     @PostMapping("/jpa/users/{id}/post")
-    public void createPostForUser(@PathVariable int id, @Valid @RequestBody Post post)
+    public ResponseEntity<Post> createPostForUser(@PathVariable int id, @Valid @RequestBody Post post)
     {
         //First needs to find the user
         Optional<User> user =  this.repository.findById(id);
@@ -108,7 +108,16 @@ public class UserJpaResource {
         if(user.isEmpty())
             throw new UserNotFoundExceltion("id:"+id);
         post.setUser(user.get());
-        postRepository.save(post);
+        Post savedPost = postRepository.save(post);
+
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedPost.getId())
+                .toUri();
+
+        // ResponseEntity is a build in class of spring to send correct http code
+        return ResponseEntity.created(location).build();
     }
 
 }

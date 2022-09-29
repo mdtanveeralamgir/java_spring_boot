@@ -1,5 +1,6 @@
 package com.in28minutes.rest.webservices.resfulwebservices.user;
 
+import com.in28minutes.rest.webservices.resfulwebservices.jpa.PostRepository;
 import com.in28minutes.rest.webservices.resfulwebservices.jpa.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.hateoas.EntityModel;
@@ -18,11 +19,13 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController //making it a rest controller
 public class UserJpaResource {
     private UserRepository repository;
+    private PostRepository postRepository;
 
     //Constructor injection
-    public UserJpaResource(UserRepository repository)
+    public UserJpaResource(UserRepository repository, PostRepository postRepository)
     {
         this.repository = repository;
+        this.postRepository = postRepository;
     }
 
     //GET /users
@@ -83,7 +86,7 @@ public class UserJpaResource {
         this.repository.deleteById(id);
     }
     //Fetch post for a user
-    @GetMapping("/jpa/users/{id}/post")
+    @GetMapping("/jpa/users/{id}/posts")
     public List<Post> retrievePostsForUser(@PathVariable int id)
     {
         //First needs to find the user
@@ -93,6 +96,19 @@ public class UserJpaResource {
             throw new UserNotFoundExceltion("id:"+id);
 
         return user.get().getPosts();
+    }
+
+    //create post for a user
+    @PostMapping("/jpa/users/{id}/post")
+    public void createPostForUser(@PathVariable int id, @Valid @RequestBody Post post)
+    {
+        //First needs to find the user
+        Optional<User> user =  this.repository.findById(id);
+
+        if(user.isEmpty())
+            throw new UserNotFoundExceltion("id:"+id);
+        post.setUser(user.get());
+        postRepository.save(post);
     }
 
 }

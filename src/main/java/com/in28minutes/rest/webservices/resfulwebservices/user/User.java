@@ -1,10 +1,13 @@
 package com.in28minutes.rest.webservices.resfulwebservices.user;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.Past;
 import jakarta.validation.constraints.Size;
 
@@ -25,7 +28,12 @@ public class User {
     @JsonProperty("Birth_Date")
     private LocalDate birthDate;
 
-
+    //One to many relation, linked with the user property in Post
+    //Means the owner of this relationship is user
+    //Also this will create a column with user_id in the post table
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore //Do not need to get the post when search for a user
+    private List<Post> posts;
     public User(int Id, String name, LocalDate birthDate)
     {
         this.id = Id;

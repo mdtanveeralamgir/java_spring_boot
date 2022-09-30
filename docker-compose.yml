@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  mysql:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'social-media-database'
+      MYSQL_USER: 'social-media-user'
+      MYSQL_PASSWORD: 'pass'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - 3607:3306
